@@ -76,7 +76,7 @@ void terminal_putchar(char c)
 {
 	if (c == '\n') {
         terminal_row++;
-        terminal_column = -1;
+        terminal_column = -1; // for endchar
     }
 
     else {
