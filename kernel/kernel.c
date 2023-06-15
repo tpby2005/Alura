@@ -3,5 +3,4 @@
 
 void kernel_main(void) {
 	terminal_initialize();
-	putchar(1);
 }
