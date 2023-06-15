@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "../include/stdio.h"
 
 int putchar(int ic) {
     char c = (char) ic;
