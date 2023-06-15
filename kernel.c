@@ -86,8 +86,12 @@ void terminal_putchar(char c)
 	if (++terminal_column == VGA_WIDTH) {
 		terminal_column = 0;
 		if (++terminal_row == VGA_HEIGHT)
-			terminal_row = 0;
+            terminal_row = 0;
 	}
+
+    if (terminal_row == VGA_HEIGHT) {
+        terminal_scroll();
+    }
 }
  
 void terminal_write(const char* data, size_t size) 
@@ -99,6 +103,15 @@ void terminal_write(const char* data, size_t size)
 void terminal_writestring(const char* data) 
 {
 	terminal_write(data, strlen(data));
+}
+
+void terminal_scroll()
+{
+    for (int i = 0; i < VGA_HEIGHT; i++) {
+        for (int j = 0; j < VGA_WIDTH; j++) {
+            terminal_buffer[i * VGA_WIDTH + j] = terminal_buffer[(i + 1) * VGA_WIDTH + j];
+        }
+    }
 }
  
 void kernel_main(void) 
